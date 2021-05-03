@@ -1,0 +1,25 @@
+.logo{
+    height: 60px;
+    width: auto;
+}
+.image1{
+   background-position: center;
+   background-repeat: no-repeat;
+
+}
+.section-search input{
+    padding: 5px !important;
+    font-size: 18px !important;
+    width: 90% !important;
+    border: #f4f4f4 3px solid !important;
+
+}
+.section-follow .i{
+    margin:5px 10px;
+    color:red;
+}
+.section-gallery img{
+    height: 520px !important;
+    width: 50px !important;
+
+}
