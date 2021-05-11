@@ -3,23 +3,14 @@
     width: auto;
 }
 .image1{
-   background-position: center;
-   background-repeat: no-repeat;
+   background-position:center !important;
+   background-repeat: no-repeat !important;
+   background-color: white;
+  
 
 }
-.section-search input{
-    padding: 5px !important;
-    font-size: 18px !important;
-    width: 90% !important;
-    border: #f4f4f4 3px solid !important;
 
-}
 .section-follow .i{
-    margin:5px 10px;
-    color:red;
-}
-.section-gallery img{
-    height: 520px !important;
-    width: 50px !important;
-
+    margin:200px 40px !important;
+    color:red !important;
 }
