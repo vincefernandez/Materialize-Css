@@ -1,3 +1,22 @@
+<?php
+
+require_once('../app/classes.php');
+
+$userdetails = $student->get_user_data(); 
+//COPY THIS EVERY PAGES PARA BUMALIK PAG HINDI  NAKA SET ANG Userdetails GEGE
+
+$StudentIDNumber = $_SESSION['login'];
+if(!isset($userdetails)){
+    header('location: ../index.php');
+}
+
+$student->SubmitBio();
+$student->UpdateBio();
+
+// print_r($userdetails);
+?>
+   
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +28,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="/img/qcu9.png" />
+    <link rel="shortcut icon" href="../img/qcu9.png" />
     <title>Quezon City University</title>
-    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <link href="dashboard.css" rel="stylesheet">
@@ -20,6 +39,7 @@
 </head>
 
 <body id="page-top">
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -136,7 +156,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="dashboardTable.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
@@ -357,9 +377,16 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Vincent Fernandez</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                
+                                <?php
+
+                                $student->getFullName();
+                                ?>
+                                   
+                                    </span>
                                 <img class="img-profile rounded-circle"
-                                    src="/img/formal.png">
+                                    src="../img/formal.png">
                                     <i class="fas fa-caret-down"></i>
                             </a>
                             <!-- Dropdown - User Information -->
@@ -378,7 +405,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -411,9 +438,9 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Subject (All) Insert PHP Here</div> 
+                                                Subject (All)</div> 
                                                 <!-- PHP HERE -->
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php $student->CountAll()?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -431,7 +458,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Tuition Fee</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">not yet done</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -452,15 +479,18 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">nOT YET DONE%</div>
                                                 </div>
-                                                <div class="col">
+
+                                                <!-- <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info" role="progressbar"
                                                             style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
+                                                            aria-valuemax="100">
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
+
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -479,7 +509,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Pending Actives/Projects</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">noty et done</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -491,14 +521,10 @@
                     </div>
 
                     <!-- Content Row -->
-<!--  -->
-                    
-                    <div class="row">
-
-                        
-                        <div class="col-xl-8 col-lg-7">
+                    <div class="row"> 
+                      <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
-                               
+                            
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">General Informations</h6>
@@ -512,35 +538,45 @@
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                             aria-labelledby="dropdownMenuLink">
                                             <div class="dropdown-header">Update</div>
-                                            <a class="dropdown-item" href="#">Edit</a>
-                                            <a class="dropdown-item" href="#">Clear Field</a>
+                                            <a class="dropdown-item" href="#" onclick="edit()">Edit</a>
+                                            <a class="dropdown-item" href="#" onclick="clearField()">Clear Field</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Something Unusual? Report Here!</a>
                                         </div>
                                     </div>
                                 </div>
-                               
-                                <div class="card-body">
-                                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit, hic reprehenderit veritatis alias maxime repellendus mollitia nulla aperiam quibusdam architecto? Qui assumenda temporibus, quos, tenetur aut tempore fugit cum facere laborum quaerat doloremque explicabo repellendus quia? Totam voluptas possimus delectus illum consequatur similique, aperiam omnis ducimus repudiandae quia voluptates aliquid alias, nam ratione voluptatum soluta neque veniam, et non doloribus! Est eos saepe modi facilis optio laboriosam incidunt similique ut, corrupti iure porro dolor nemo deserunt. Tempora ad laborum minima et dolorem aut? Iure, voluptate? Asperiores ipsa recusandae porro aliquid perspiciatis voluptate cumque dicta omnis accusantium non nisi, vel repellat asdas das das das dasd asd asd asda
-                                      asd asd asdas das dasd asd ?</p>
+                                <form action="dashboardBS.php" method="post">
+                                <div class="form-group">
+                                
+                                <textarea class="form-control" id="TextArea" name="TextArea" rows="12" placeholder="Enter Text Here to Introduce yourself" readonly="true"><?php $student->bio();?></textarea>
+                                
+                                <p>Date Submitted:  <?php $student->bioDate();?></p>
+                                <button type="submit" class="btn btn-primary mb-2 right" name="save">Save</button>
                                 </div>
-                               
+                                </form>
+                             
+                                
+                                    
+                                
+                                 
                                
                             </div>
                         </div>
+                        
 
                        
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                               
                                 <div class="card-body">
-                                    <img src="/img/formal.png"  class="img-fluid" alt="Responsive image">
+                                    <img src="../img/formal.png"  class="img-fluid" alt="Responsive image">
                                     
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                  
+    
                     <!-- Content Row -->
                     <div class="row">
 
@@ -666,7 +702,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">
+                                            src="undraw_posting_photo.svg" alt="...">
                                     </div>
                                     <p>Add some quality, svg illustrations to your project courtesy of <a
                                             target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
@@ -735,29 +771,14 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="../app/logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
-
+    
+    
 </body>
 
 </html>

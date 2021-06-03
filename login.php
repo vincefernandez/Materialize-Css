@@ -1,32 +1,8 @@
 <?php 
-include("<app/connection.php");
-//create function for this shit
-
-
-        if(isset($_POST['Submit'])){
-            $Student_Number = $_POST['studno'];
-            
-            $First_Name = $_POST['Fname'];
-            $Last_Name = $_POST['Lname'];
-            
-            $stmt = $pdo->prepare("SELECT * FROM loginuser where Student_Number = ? AND First_Name = ? AND Last_Name =?");
-            $stmt->execute([$Student_Number,$First_Name,$Last_Name]);
-            $total = $stmt->rowCount();
-            
-            if($total > 0){
-                
-             
-            header('location: dashboard.html');
-            session_start();
-            $_SESSION = $Student_Number;
-           
-            }else{
-                echo "<script> alert ('Error Please Try Again'); </script>"; 
-            }
-            }
-        
-
-
+include_once("app/classes.php");
+$user = $student->loginUser();
+$userdetails = $student->get_user_data();
+print_r($userdetails);
 ?>
 <!DOCTYPE html>
   <html>
@@ -62,7 +38,6 @@ include("<app/connection.php");
             <div class="col s12">
                 <div class="card-panel grey lighten-4">
                     <h5 class="center">Please Fill out Form</h5>
-                  
                     <div class="input-field ">
                         <input type="text" placeholder="Student Number" name="studno" required>
                         
