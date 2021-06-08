@@ -58,7 +58,7 @@
 
      <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-  
+  <li><a href="pages/dashboardBS.php">Home</a></li>
   <li><a href="app/logout.php">Logout</a></li>
 </ul>
 
